@@ -5,7 +5,7 @@ import AddPlayerForm from './AddPlayerForm';
 
 
 class App extends Component {
-  
+
   state = {
     players: [
       {
@@ -38,11 +38,25 @@ class App extends Component {
   }
 
   handleRemovePlayer = (id) => {
-    this.setState( prevState => {
+    this.setState(prevState => {
       return {
         players: prevState.players.filter(p => p.id !== id)
       };
     });
+  }
+
+  handleAddPlayer = (name) => {
+    this.setState(prevState => {
+      return {
+        players: prevState.players.concat(
+          [{
+            name: name,
+            id: prevState.players.length + 1,
+            score: 0
+          }]
+        )
+      }
+    })
   }
 
   render() {
@@ -66,7 +80,7 @@ class App extends Component {
           />
         )}
 
-        <AddPlayerForm />
+        <AddPlayerForm addPlayer={this.handleAddPlayer}/>
       </div>
     );
   }
