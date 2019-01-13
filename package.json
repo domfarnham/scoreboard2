@@ -16,6 +16,9 @@
   "devDependencies": {
     "standard": "^12.0.1"
   },
+  "standard": {
+    "parser": "babel-eslint"
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
