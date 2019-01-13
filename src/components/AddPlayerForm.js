@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 
 class AddPlayerForm extends Component {
-  
   state = {
     value: ''
   }
@@ -15,7 +14,7 @@ class AddPlayerForm extends Component {
     e.preventDefault()
     this.props.addPlayer(this.state.value)
   }
-  
+
   render () {
     console.log(this.state.value)
     return (
@@ -23,8 +22,8 @@ class AddPlayerForm extends Component {
         <input
           type='text'
           onChange={this.handleValueChange}
-          placeholder="Enter a player's name"              
-          />
+          placeholder="Enter a player's name"
+        />
 
         <input
           type='submit'
