@@ -9,35 +9,60 @@ class App extends Component {
       {
         name: 'Dominic',
         id: 1,
-        score: 0
+        score: 0,
+        isHighScore: false
       },
       {
         name: 'Danielle',
         id: 2,
-        score: 0
+        score: 0,
+        isHighScore: false
       },
       {
         name: 'Ralph',
         id: 3,
-        score: 0
+        score: 0,
+        isHighScore: false
       },
       {
         name: 'Oscar',
         id: 4,
-        score: 0
+        score: 0,
+        isHighScore: false
       }
     ]
   }
 
   prevPlayersID = 4
 
-  handleScoreChange = (index, delta) => {
-    this.setState(prevState => {
-      prevState.players[index].score += delta
-      return ({
-        score: prevState.players[index].score
-      })
+  handleHighScore = () => {
+    const highScore = this.state.players.reduce((highest, player) => {
+      return Math.max(highest, player.score)
+    }, 0)
+
+    const highScorers = this.state.players.map(player => {
+      if (player.score === highScore && highScore !== 0) {
+        player.isHighScore = true
+      } else if (player.isHighScore) {
+        player.isHighScore = false
+      }
+      return player
     })
+
+    this.setState({
+      players: highScorers
+    })
+  }
+
+  handleScoreChange = (index, delta) => {
+    const updatedPlayers = this.state.players.map((player, playerIndex) => {
+      if (index === playerIndex) { player.score += delta }
+      return player
+    })
+
+    this.setState({
+      players: updatedPlayers
+    }, () => this.handleHighScore())
   }
 
   handleAddPlayer = (name) => {
@@ -50,6 +75,7 @@ class App extends Component {
           score: 0
         }
       )
+
       return {
         players: newPlayersList
       }
@@ -82,6 +108,7 @@ class App extends Component {
             index={index}
             changeScore={this.handleScoreChange}
             removePlayer={this.handleRemovePlayer}
+            isHighScore={player.isHighScore}
           />
         )}
 
