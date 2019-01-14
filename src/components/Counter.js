@@ -12,9 +12,9 @@ const Counter = ({ index, changeScore, score }) => {
 }
 
 Counter.propTypes = {
-  index: PropTypes.number,
-  changeScore: PropTypes.func,
-  score: PropTypes.number
+  index: PropTypes.number.isRequired,
+  changeScore: PropTypes.func.isRequired,
+  score: PropTypes.number.isRequired
 }
 
 export default Counter
