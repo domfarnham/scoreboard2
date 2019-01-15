@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom'
 
 import App from './components/App'
 import './index.css'
+import { Provider } from './components/context'
 
 ReactDOM.render(
-  <App />,
+  <Provider>
+    <App />
+  </Provider>,
   document.getElementById('root')
 )

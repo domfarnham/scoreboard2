@@ -9,14 +9,8 @@ const PlayersList = () => {
         return (
           context.players.map((player, index) =>
             <Player
-              name={player.name}
-              id={player.id}
-              score={player.score}
               key={player.id.toString()}
               index={index}
-              changeScore={context.handleScoreChange}
-              removePlayer={context.handleRemovePlayer}
-              isHighScore={player.isHighScore}
             />
           )
         )

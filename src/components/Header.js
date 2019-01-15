@@ -2,12 +2,17 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import Stats from './Stats'
 import Stopwatch from './Stopwatch'
+import { Consumer } from './context'
 
 const Header = ({ title }) => {
   return (
     <header>
       <Stats />
-      <h1>{title}</h1>
+      <Consumer>
+        {({ title }) => (
+          <h1>{title}</h1>
+        )}
+      </Consumer>
       <Stopwatch />
     </header>
   )
